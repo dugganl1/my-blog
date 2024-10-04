@@ -1,7 +1,17 @@
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/Geist[wght].woff2") format("woff2 supports variations"),
+    url("../fonts/Geist[wght].woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
   --primary-color: hsl(200, 10%, 15%);
-  --background-color: hsl(0, 0%, 96%);
+  --background-color: hsl(0, 0%, 98%);
   --max-width: 800px;
+  --base-font-size: 18px;
+  -webkit-font-smoothing: antialiased;
 }
 
 *,
@@ -23,6 +33,8 @@ body {
   color: var(--primary-color);
   display: flex;
   flex-direction: column;
+  font-size: var(--base-font-size);
+  line-height: 1.5;
 }
 
 .layout {
@@ -49,23 +61,123 @@ header {
   width: 100%;
   max-width: var(--max-width);
   padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background-color: var(--background-color);
 }
 
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+nav {
+  background-color: transparent;
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+nav:after {
+  content: "";
+  height: 0.5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: currentColor;
+  transition: transform 0.3s;
+  transform-origin: 0 0;
+}
+
+/* Add some top margin to the main content to account for the fixed header */
+main {
+  margin-top: 80px; /* Adjust this value based on your header's height */
+}
+
+.home_logo {
+  text-decoration: none;
   display: flex;
   align-items: center;
 }
 
-nav li {
-  margin-right: 20px; /* Space for future nav items */
+.home_logo svg {
+  width: 1.5ch;
+  margin-right: 0.5ch;
+  transition: transform 10s linear;
 }
 
-nav .logo a {
-  font-size: 24px;
-  font-weight: bold;
+.home_logo:hover svg {
+  transform: rotate(360deg);
+}
+
+.home_logo-extension {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+}
+
+.nav-link {
   text-decoration: none;
-  color: hsl(0, 0%, 0%); /* Plain black text */
+  position: relative;
+  color: hsl(0, 0%, 0%);
+}
+
+.nav-link:not(:last-child)::after {
+  content: "—";
+  margin-left: 1ch;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  left: 0;
+  bottom: -2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.2s;
+  transform-origin: 100% 0;
+}
+
+.nav-link:hover::before {
+  transform-origin: 0 0;
+  transform: scaleX(1);
+}
+
+/* Remove margin from last item */
+.nav-link:last-child {
+  margin-right: 0;
+}
+
+@media screen and (min-width: 37.5rem) {
+  .home_logo-extension {
+    display: inline-block;
+    transition: all 0.1s ease;
+    opacity: 0;
+    transform: translateX(-2ch);
+  }
+
+  .home_logo-extension:before {
+    content: " — ";
+    display: inline-block;
+    transition: all 0.1s ease;
+    transform: translateX(2ch);
+  }
+
+  .home_logo:hover .home_logo-extension {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .home_logo:hover .home_logo-extension:before {
+    transform: translateX(0);
+  }
 }
