@@ -1,6 +1,7 @@
 :root {
   --primary-color: hsl(200, 10%, 15%);
   --background-color: hsl(0, 0%, 96%);
+  --max-width: 800px;
 }
 
 *,
@@ -17,21 +18,54 @@ main {
 
 body {
   margin: 0;
-  display: block;
   min-height: 100vh;
   background-color: var(--background-color);
   color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
 }
 
 .layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: auto;
-  gap: 8px;
-  height: 100vh;
+}
+
+header,
+main,
+footer {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 20px; /* Add some padding on smaller screens */
 }
 
 main {
-  max-width: 800px;
+  flex: 1;
+}
+
+header {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 20px; /* Space for future nav items */
+}
+
+nav .logo a {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: hsl(0, 0%, 0%); /* Plain black text */
 }
