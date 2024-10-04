@@ -20,16 +20,23 @@
   box-sizing: border-box;
 }
 
+a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 header,
 footer,
 main {
-  border: 1px solid red;
+  border: 1px solid transparent;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   background-color: var(--background-color);
+  font-family: "Geist", sans-serif;
   color: var(--primary-color);
   display: flex;
   flex-direction: column;
@@ -50,7 +57,7 @@ main,
 footer {
   width: 100%;
   max-width: var(--max-width);
-  padding: 0 20px; /* Add some padding on smaller screens */
+  padding: 0; /* Add some padding on smaller screens */
 }
 
 main {
@@ -59,6 +66,7 @@ main {
 
 header {
   width: 100%;
+  font-size: 0.75rem;
   max-width: var(--max-width);
   padding: 20px;
   position: fixed;
@@ -67,11 +75,11 @@ header {
   transform: translateX(-50%);
   z-index: 2;
   background-color: var(--background-color);
+  padding: 1rem 0rem;
 }
 
 nav {
   background-color: transparent;
-  font-size: 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -89,11 +97,6 @@ nav:after {
   background-color: currentColor;
   transition: transform 0.3s;
   transform-origin: 0 0;
-}
-
-/* Add some top margin to the main content to account for the fixed header */
-main {
-  margin-top: 80px; /* Adjust this value based on your header's height */
 }
 
 .home_logo {
@@ -119,25 +122,29 @@ main {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1ch;
 }
 
 .nav-link {
   text-decoration: none;
   position: relative;
-  color: hsl(0, 0%, 0%);
+  padding-right: 3ch;
+}
+
+.nav-link:not(:last-child) {
+  margin-right: 0.5ch; /* space for the dash */
 }
 
 .nav-link:not(:last-child)::after {
   content: "—";
-  margin-left: 1ch;
+  position: absolute;
+  right: 0.75ch;
 }
 
 .nav-link::before {
   content: "";
   position: absolute;
   display: block;
-  width: 100%;
+  width: calc(100% - 3ch); /* Subtract space for dash */
   height: 1px;
   left: 0;
   bottom: -2px;
@@ -154,7 +161,11 @@ main {
 
 /* Remove margin from last item */
 .nav-link:last-child {
-  margin-right: 0;
+  padding-right: 0;
+}
+
+.nav-link:last-child::before {
+  width: 100%;
 }
 
 @media screen and (min-width: 37.5rem) {
@@ -180,4 +191,37 @@ main {
   .home_logo:hover .home_logo-extension:before {
     transform: translateX(0);
   }
+}
+
+main h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.hero {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 8rem 0 4rem;
+  border-bottom: 0.5px solid var(--primary-color);
+}
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: left;
+  margin: 0 0 1rem 0; /* Add bottom margin to create space between h1 and p */
+}
+
+.hero-subtitle {
+  font-size: 1.25rem; /* Adjust this value for your preferred size */
+  font-weight: 400;
+  color: var(--primary-color);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 60ch; /* Limit the line length for better readability */
 }
