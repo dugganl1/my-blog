@@ -9,8 +9,8 @@
 :root {
   --primary-color: hsl(200, 10%, 15%);
   --background-color: hsl(0, 0%, 98%);
-  --max-width: 800px;
-  --base-font-size: 18px;
+  --max-width: 950px;
+  --base-font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -62,24 +62,26 @@ footer {
 
 main {
   flex: 1;
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  flex-direction: column;
 }
 
 header {
   width: 100%;
   font-size: 0.75rem;
   max-width: var(--max-width);
-  padding: 20px;
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+  padding: 0.75rem 0rem;
   background-color: var(--background-color);
-  padding: 1rem 0rem;
 }
 
 nav {
-  background-color: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -195,7 +197,8 @@ nav:after {
 
 main h1 {
   font-size: 4rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.05em;
   color: var(--primary-color);
   text-align: center;
   margin-top: 2rem;
@@ -204,9 +207,7 @@ main h1 {
 
 .hero {
   width: 100%;
-  max-width: var(--max-width);
   padding: 8rem 0 4rem;
-  border-bottom: 0.5px solid var(--primary-color);
 }
 
 .hero h1 {
@@ -219,9 +220,132 @@ main h1 {
 
 .hero-subtitle {
   font-size: 1.25rem; /* Adjust this value for your preferred size */
-  font-weight: 400;
+  font-weight: 300;
   color: var(--primary-color);
   line-height: 1.5;
   margin: 0;
   max-width: 60ch; /* Limit the line length for better readability */
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  padding: 2rem 0;
+  gap: 2rem; /* This creates the gap between sections */
+}
+
+.metadata {
+  width: calc(25% - 1rem); /* 25% width minus half of the gap */
+  padding-right: 1rem;
+  padding-top: 2rem;
+  border-top: 0.5px solid var(--primary-color);
+}
+
+.metadata-content {
+  position: sticky;
+  top: 5rem; /* Adjust based on your header height */
+}
+
+.main-content {
+  width: 100%;
+  padding: 2rem 0;
+  border-top: 0.5px solid var(--primary-color);
+}
+
+.content h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+}
+
+.content h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.content a {
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 0.05em;
+  cursor: pointer;
+  color: var(--primary-color);
+  transition: color 0.2s ease;
+  display: inline;
+}
+
+/* Responsive layout for larger screens */
+@media screen and (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .metadata {
+    width: 25%;
+    padding-right: 2rem;
+    margin-bottom: 0;
+  }
+
+  .main-content {
+    width: 75%;
+  }
+}
+
+/* Styles for metadata content */
+.metadata-content p {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.metadata-content h4 {
+  font-size: 1rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.metadata-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.metadata-content li {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Adjust main content styles */
+.main-content h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+}
+
+.main-content h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+}
+
+.main-content p {
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.main-content a {
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 0.05em;
+  cursor: pointer;
+  color: var(--primary-color);
+  transition: color 0.2s ease;
+  display: inline;
 }
